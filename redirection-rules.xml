@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rules SYSTEM "https://resources.jetbrains.com/writerside/1.0/redirection-rules.dtd">
+<rules>
+    <!-- format is as follows
+    <rule id="<unique id>">
+        <accepts>page.html</accepts>
+    </rule>
+    -->
+    <rule id="434ab49b">
+        <description>Created after removal of "Overview" from 개발문서</description>
+        <accepts>Overview.html</accepts>
+    </rule>
+<!--    <rule id="4351afb1">-->
+<!--        <description>Created after removal of "MVC 개발 규칙 및 가이드" from 개발문서</description>-->
+<!--        <accepts>dev-convention-guide.html</accepts>-->
+<!--    </rule>-->
+<!--    <rule id="532e01a1">-->
+<!--        <description>Created after removal of "컨트롤러 클래스" from 개발문서</description>-->
+<!--        <accepts>컨트롤러-클래스.html</accepts>-->
+<!--    </rule>-->
+<!--    <rule id="771b4157">-->
+<!--        <description>Created after removal of "컨트롤러 클래스" from 개발문서</description>-->
+<!--        <accepts>컨트롤러-클래스.html</accepts>-->
+<!--    </rule>-->
+<!--    <rule id="27ad7c69">-->
+<!--        <description>Created after removal of "comon-guide" from 개발문서</description>-->
+<!--        <accepts>common-guide.html</accepts>-->
+<!--    </rule>-->
+</rules>

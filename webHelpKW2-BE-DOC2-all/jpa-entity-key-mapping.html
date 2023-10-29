@@ -1,0 +1,82 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#9F42BC"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-10-30T01:25:18.845872"><meta name="build-number" content="${buildNumber}">       <title>엔티티 클래스 아이디와 테이블 PK 매핑 | 개발문서</title><script id="virtual-toc-data" type="application/json">[{"id":"auto-increment","level":0,"title":"기본키 매핑 - Auto Increment","anchor":"#auto-increment"},{"id":"not-auto-increment","level":0,"title":"기본키 매핑 - NOT Auto Increment","anchor":"#not-auto-increment"},{"id":"6f5e353c_13037","level":0,"title":"복합키 매핑","anchor":"#6f5e353c_13037"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.1.5-b176/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="엔티티 클래스 아이디와 테이블 PK 매핑 | 개발문서"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="개발문서 Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="/1.0/jpa-entity-key-mapping.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="엔티티 클래스 아이디와 테이블 PK 매핑 | 개발문서"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "/1.0/jpa-entity-key-mapping.html#webpage", "url": "/1.0/jpa-entity-key-mapping.html", "name": "엔티티 클래스 아이디와 테이블 PK 매핑 | 개발문서", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "개발문서 Help" }</script><!-- End Schema.org --> <!-- Mermaid light/dark themes -->  <link rel="stylesheet" type="text/css" href="mermaid.css">  </head>     <body data-id="jpa-entity-key-mapping" data-main-title="엔티티 클래스 아이디와 테이블 PK 매핑" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs="개발 규칙 및 가이드///JPA 엔티티 모델링 가이드"  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>개발문서 1.0 Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="jpa-entity-key-mapping"  id="jpa-entity-key-mapping.md"  >엔티티 클래스 아이디와 테이블 PK 매핑</h1>  <section class="chapter"><h2 id="auto-increment" data-toc="auto-increment">기본키 매핑 - Auto Increment</h2><p id="6f5e353c_12992">기본키 작성 양식</p><div class="code-block" data-lang="java"         >
+...
+@Entity
+public class SampleManagement {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, 
+					generator = &quot;SampleManagementSeq&quot;)
+	@SequenceGenerator(name = &quot;SampleManagementSeq&quot;
+					   sequenceName = &quot;SAMPLE_MANAGEMENT_SEQ&quot;
+					   allocationSize = 1)
+    @Column(name = &quot;ID&quot;)
+    @Comment(&quot;샘플 관리 ID&quot;)
+    private Long id;
+	
+	...
+}
+</div><ul class="list _ul" id="6f5e353c_12994"    ><li class="list__item" id="6f5e353c_12995"><p><code class="code" id="6f5e353c_12996">@Id</code> (필수) </p><ul class="list _ul" id="6f5e353c_12997"    ><li class="list__item" id="6f5e353c_12998"><p>해당 어노테이션이 작성된 필드가 엔티티 아이디임을 정의합니다.</p></li></ul></li><li class="list__item" id="6f5e353c_12999"><p><code class="code" id="6f5e353c_13000">@GeneratedValue</code> (필수) </p><ul class="list _ul" id="6f5e353c_13001"    ><li class="list__item" id="6f5e353c_13002"><p>엔티티 아이디는 속성에 정의된 조건에 따라 값이 할당될 수 있도록 설정합니다.</p></li><li class="list__item" id="6f5e353c_13003"><p>속성 </p><ul class="list _ul" id="6f5e353c_13004"    ><li class="list__item" id="6f5e353c_13005"><p><code class="code" id="6f5e353c_13006">strategy</code> = 할당 전략을 설정합니다. (<code class="code" id="6f5e353c_13007">GenerationType.SEQUNCE</code> 사용)</p></li><li class="list__item" id="6f5e353c_13008"><p><code class="code" id="6f5e353c_13009">generator</code> = SequenceGenerator 명을 설정합니다.</p></li></ul></li></ul></li><li class="list__item" id="6f5e353c_13010"><p><code class="code" id="6f5e353c_13011">@SequenceGenerator</code> (필수) </p><ul class="list _ul" id="6f5e353c_13012"    ><li class="list__item" id="6f5e353c_13013"><p>SequenceGenerator를 생성합니다.</p></li><li class="list__item" id="6f5e353c_13014"><p>속성 </p><ul class="list _ul" id="6f5e353c_13015"    ><li class="list__item" id="6f5e353c_13016"><p><code class="code" id="6f5e353c_13017">name</code> = JPA SequenceGenerator 이름을 설정합니다. </p><ul class="list _ul" id="6f5e353c_13018"    ><li class="list__item" id="6f5e353c_13019"><p>설정된 이름은 <code class="code" id="6f5e353c_13020">@GeneratorValue</code> 에서 사용됩니다.</p></li><li class="list__item" id="6f5e353c_13021"><p>시퀀스 명의 PascalCase 형식으로 작성합니다.</p></li></ul></li><li class="list__item" id="6f5e353c_13022"><p><code class="code" id="6f5e353c_13023">sequenceName</code> = 데이터베이스의 시퀀스 오브젝트 이름을 작성합니다. </p><ul class="list _ul" id="6f5e353c_13024"    ><li class="list__item" id="6f5e353c_13025"><p>시퀀스 명명 규칙은 테이블명 끝에 &lsquo;_SEQ&rsquo; 를 붙여 사용합니다.</p></li></ul></li><li class="list__item" id="6f5e353c_13026"><p><code class="code" id="6f5e353c_13027">allocationSize</code> = 증가값을 설정합니다. (기본 : 1) </p><ul class="list _ul" id="6f5e353c_13028"    ><li class="list__item" id="6f5e353c_13029"><p>만일, 대용량 일괄 처리가 자주 발생하는 엔티티는 증가값을 수정할 수 있습니다.</p></li></ul></li></ul></li></ul></li></ul></section><section class="chapter"><h2 id="not-auto-increment" data-toc="not-auto-increment">기본키 매핑 - NOT Auto Increment</h2><p id="6f5e353c_13030">기본키 작성 양식</p><div class="code-block" data-lang="java"         >
+...
+@Entity
+public class SampleManagement {
+
+	@Id
+    @Column(name = &quot;ID&quot;)
+	@Comment(&quot;샘플 관리 ID&quot;)
+	private String id;
+	
+	...
+}
+</div><ul class="list _ul" id="6f5e353c_13032"    ><li class="list__item" id="6f5e353c_13033"><p><code class="code" id="6f5e353c_13034">@Id</code> (필수) </p><ul class="list _ul" id="6f5e353c_13035"    ><li class="list__item" id="6f5e353c_13036"><p>해당 어노테이션이 작성된 필드가 엔티티 아이디임을 정의합니다.</p></li></ul></li></ul></section><section class="chapter"><h2 id="6f5e353c_13037" data-toc="6f5e353c_13037">복합키 매핑</h2><p id="6f5e353c_13038">복합키를 매핑할 때 사용할 수 있는 방법이 두 가지가 있습니다. 하나는 <code class="code" id="6f5e353c_13039">@IdClass</code> 를 활용하는 방법이고 또 하나는 <code class="code" id="6f5e353c_13040">@EmbeddedId</code> 를 활용하는 겁니다. 이번 프로젝트에서는 <code class="code" id="6f5e353c_13041">@EmbeddedId</code> 방식으로만 통일하여 복합키를 매핑할 수 있도록 합니다.</p><p id="6f5e353c_13042">복합키 작성 양식 (Embeddable)</p><div class="code-block" data-lang="java"         >
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
+@Embeddable
+public class SampleManagementId implements Serializable {
+
+    @Column(name = &quot;SAMPLE_CODE&quot;, columnDefinition = &quot;VARCHAR2(20)&quot;)
+    @Comment(&quot;샘플 코드&quot;)
+    private String sampleCode;
+
+    @Column(name = &quot;SAMPLE_DETAIL_CODE&quot;, columnDefinition = &quot;VARCHAR2(50)&quot;)
+    @Comment(&quot;샘플 상세 코드&quot;)
+    private String sampleDetailCode;
+}
+</div><ul class="list _ul" id="6f5e353c_13044"    ><li class="list__item" id="6f5e353c_13045"><p><code class="code" id="6f5e353c_13046">@Getter</code> (필수)</p></li><li class="list__item" id="6f5e353c_13047"><p><code class="code" id="6f5e353c_13048">@Setter</code> (필수)</p></li><li class="list__item" id="6f5e353c_13049"><p><code class="code" id="6f5e353c_13050">@AllArgsConstructor</code> (필수)</p></li><li class="list__item" id="6f5e353c_13051"><p><code class="code" id="6f5e353c_13052">@NoArgsConstructor</code> (필수)</p></li><li class="list__item" id="6f5e353c_13053"><p><code class="code" id="6f5e353c_13054">@EqualsAndHashCode</code> (필수) </p><ul class="list _ul" id="6f5e353c_13055"    ><li class="list__item" id="6f5e353c_13056"><p>영속성 컨텍스트 내에서 엔티티 아이디 값을 비교할 수 있도록 equals()와 hashCode()를 작성합니다.</p></li></ul></li><li class="list__item" id="6f5e353c_13057"><p><code class="code" id="6f5e353c_13058">@Embeddable</code> (필수) </p><ul class="list _ul" id="6f5e353c_13059"    ><li class="list__item" id="6f5e353c_13060"><p>값 타입 클래스임을 정의합니다.</p></li></ul></li><li class="list__item" id="6f5e353c_13061"><p><code class="code" id="6f5e353c_13062">implements Serializable</code> (필수) </p><ul class="list _ul" id="6f5e353c_13063"    ><li class="list__item" id="6f5e353c_13064"><p>복합키 클래스가 직렬화가 될 수 있도록 Serializable 인터페이스를 상속 받도록 합니다.</p></li></ul></li></ul><p id="6f5e353c_13065">복합키 설정 양식</p><div class="code-block" data-lang="java"         >
+...
+@Entity
+public class SampleManagement implements Auditing.Create, 
+										 Persistable&lt;SampleManagementId&gt; {
+
+	@EmbeddedId
+	private SampleManagementId id;
+
+	...
+
+	@Embedded
+	private CreateAudit createAudit;
+
+	...
+
+	@Override
+	public boolean isNew() {
+		return isNewByCreateAudit();
+	}
+}
+</div><ul class="list _ul" id="6f5e353c_13067"    ><li class="list__item" id="6f5e353c_13068"><p id="6f5e353c_13069"><code class="code" id="6f5e353c_13070">@EmbeddedId</code> (필수)</p><ul class="list _ul" id="6f5e353c_13071"    ><li class="list__item" id="6f5e353c_13072"><p>값 타입을 엔티티의 아이디로 설정합니다.</p></li></ul></li><li class="list__item" id="6f5e353c_13073"><p id="6f5e353c_13074"><code class="code" id="6f5e353c_13075">Persistable&lt;T&gt;</code> (필수)</p><ul class="list _ul" id="6f5e353c_13076"    ><li class="list__item" id="6f5e353c_13077"><p>Spring data jpa 에서 영속 방식을 재구현하기 위해 상속받습니다.</p></li><li class="list__item" id="6f5e353c_13078"><p>JpaRepository에서 복합키로 구성된 엔티티를 새로 영속(= insert) 시키고자 할 때 바로 Insert 쿼리가 만들어져서 보내지지 않고 select 쿼리를 한 번 보내고 난 후 insert 쿼리가 보내지는 것을 방지하기 위해 사용됩니다. </p><ul class="list _ul" id="6f5e353c_13079"    ><li class="list__item" id="6f5e353c_13080"><p><code class="code" id="6f5e353c_13081">isNew</code> 메소드 정의 </p><ul class="list _ul" id="6f5e353c_13082"    ><li class="list__item" id="6f5e353c_13083"><p>필요한 값 타입 = <code class="code" id="6f5e353c_13084">CreateAudit</code> (엔티티 생성 감사용 값 타입 활용)</p></li><li class="list__item" id="6f5e353c_13085"><p>엔티티의 등록일 필드를 활용하여 신규 엔티티 여부를 판단할 수 있도록 합니다.</p></li><li class="list__item" id="6f5e353c_13086"><p>등록일 없음 = 신규, 등록일 있음 = 신규 아님</p></li><li class="list__item" id="6f5e353c_13087"><p><code class="code" id="6f5e353c_13088">Auditing.Create</code> 인터페이스의 <code class="code" id="6f5e353c_13089">isNewByCreateAudit()</code> 메소드 사용</p></li></ul></li><li class="list__item" id="6f5e353c_13090"><p>만일 테이블이 복합키로 이루어져 있는데 데이터 생성일 또는 등록일 등 데이터 생성 감사용 데이터 컬럼이 없다면 공통 개발자에게 노티 부탁드립니다.</p></li></ul></li></ul></li><li class="list__item" id="6f5e353c_13091"><p id="6f5e353c_13092">JpaRepository 구현체 확인해보기 - SimpleJpaRepository.java</p><div class="code-block" data-lang="java"         >
+@Transactional
+@Override
+public &lt;S extends T&gt; S save(S entity) {
+
+  Assert.notNull(entity, &quot;Entity must not be null&quot;);
+
+  if (entityInformation.isNew(entity)) {
+      em.persist(entity);
+      return entity;
+  } else {
+      return em.merge(entity);
+  }
+}
+</div><aside class="prompt" data-type="tip" data-title="" id="6f5e353c_13094"><p id="6f5e353c_13095">JpaRepository 구현체들 중 하나인 SimpleJpaRepository의 save() 메소드가 정의된 구문을 확인해 보면 엔티티가 영속이 되기 전에 isNew() 메소드로 엔티티가 신규인지 아닌지 확인하는 구문이 있습니다.</p><p id="6f5e353c_13096">기본키 전략에서는 엔티티의 아이디 값이 없으면 항상 새로운 엔티티로 판별하기 때문에 merge()가 발생되지 않는 것입니다. 하지만 복합키를 사용 시, 개발자는 데이터를 신규 추가할 때 복합키를 항상 생성하여 영속시키고자 하기 때문에 spring data jpa에서는 엔티티 아이디가 Null이지 않아 persist()가 실행되지 않고 merge()가 실행됩니다.</p><p id="6f5e353c_13097">따라서, 복합키를 사용할 때는 이 구문을 통과시키기 위해 isNew() 메소드를 오버라이딩하여 재정의가 필요합니다.</p></aside></li></ul></section><div class="last-modified"> Last modified: 29 10월 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="jpa-entity-column-mapping.html">엔티티 클래스 필드와 테이블 컬럼 매핑</a>   <a class="navigation-links__next" href="jpa-entity-relation-mapping.html">엔티티 연관관계 매핑</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.1.5-b176/app.js"></script></body></html>

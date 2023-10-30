@@ -2,7 +2,7 @@
 <!DOCTYPE instance-profile
         SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
 
-<instance-profile id="kw2-be-doc"
+<instance-profile id="kd"
                  name="개발문서"
                  start-page="doc-management.md">
 

@@ -30,9 +30,8 @@ Some introductory information.
    ```
 
 2. Step with an image
-   ![](image.png)
-
-<!-- The 'src' attribute should contain the name of an image from the '/images' folder in your project -->
+   ![new_topic_options_dark](new_topic_options_dark.png)
+   <!-- The 'src' attribute should contain the name of an image from the '/images' folder in your project -->
 
 3. Step with a list.
    - List item

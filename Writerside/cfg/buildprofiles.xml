@@ -10,7 +10,7 @@
 
     <build-profile instance="hi">
         <variables>
-            <noindex-content>false</noindex-content>
+            <noindex-content>true</noindex-content>
             <primary-color>purple</primary-color>
         </variables>
     </build-profile>

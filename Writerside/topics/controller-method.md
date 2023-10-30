@@ -4,7 +4,7 @@
     - URI의 마지막 기능명을 메소드명으로 작성합니다.
         - e.g. uri = `/sample/getSampleList`
         - e.g. method = `… getSampleList(…)`
-    - [기본 명명 규칙 - 메소드](default-namespace.md#메소드 "기본 명명 규칙 #메소드")
+    - [기본 명명 규칙 - 메소드](default-namespace.md#method-name "기본 명명 규칙 #메소드")
 - 메소드 접근 제한자
     - `public`
 - 메소드 어노테이션

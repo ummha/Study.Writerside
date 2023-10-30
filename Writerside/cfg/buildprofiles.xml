@@ -8,7 +8,7 @@
         <algolia-api-key>c952091753a3cedef3e2df05ef815311</algolia-api-key>
     </variables>
 
-    <build-profile instance="hi">
+    <build-profile instance="kb">
         <variables>
             <noindex-content>true</noindex-content>
             <primary-color>purple</primary-color>

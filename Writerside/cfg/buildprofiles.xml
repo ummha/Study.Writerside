@@ -10,7 +10,7 @@
 
     <build-profile instance="kd">
         <variables>
-            <noindex-content>true</noindex-content>
+            <noindex-content>false</noindex-content>
             <primary-color>purple</primary-color>
         </variables>
     </build-profile>
